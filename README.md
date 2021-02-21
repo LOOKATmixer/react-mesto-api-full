@@ -4,8 +4,8 @@
 =====================
 
 ## Сайт:
-https://mixer.students.nomoredomains.space
+https://mixer.students.nomoreparties.space
 ## REST API:
-https://api.mixer.students.nomoredomains.space
+https://api.mixer.students.nomoreparties.space
 ## Публичный IP:
 84.201.173.161
