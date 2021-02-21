@@ -1,4 +1,4 @@
-export const BASE_URL = 'https://mixer.students.nomoreparties.space';
+export const BASE_URL = 'https://api.mixer.students.nomoreparties.space';
 
 const checkResponse = (res) =>
   res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`);
