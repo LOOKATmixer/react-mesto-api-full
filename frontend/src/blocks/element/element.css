@@ -1,0 +1,15 @@
+@import url(./__content/element__content.css);
+@import url(./__image/element__image.css);
+@import url(./__content-text/element__content-text.css);
+@import url(./__content-like/element__content-like.css);
+@import url(./__image/_button/element__image_button.css);
+@import url(./__like-group/element__like-group.css);
+@import url(./__like-counter/element__like-counter.css);
+@import url(./__content-basket/_hidden/element__content-basket_hidden.css);
+@import url(./__content-basket/_visible/element__content-basket_visible.css);
+
+.element {
+    position: relative;
+    max-width: 288px;
+    align-items: center;
+}

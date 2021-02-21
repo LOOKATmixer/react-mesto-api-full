@@ -1,0 +1,7 @@
+@media screen and (max-width: 420px) {
+  .sign {
+    min-width: 260px;
+    width: 260px;
+    margin: 0 auto;
+  }
+}

@@ -1,0 +1,6 @@
+@media screen and (max-width: 420) {
+  .header__sign-block {
+    margin: auto;
+    margin-bottom: 32px;
+  }
+}

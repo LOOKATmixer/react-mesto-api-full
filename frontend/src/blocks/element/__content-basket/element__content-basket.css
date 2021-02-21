@@ -1,0 +1,24 @@
+.element__content-basket {
+    position: absolute;
+    top: 18px;
+    right: 15px;
+    background-image: url(../../../images/basket.svg);
+    width: 18px;
+    height: 19px;
+    background-repeat: no-repeat;
+    padding: 0;
+    border: none;
+    font: inherit;
+    color: inherit;
+    background-color: transparent;
+    cursor: pointer;
+    transition: opacity 0.2s linear;
+  }
+
+  .element__content-basket:focus {
+    outline: none;
+  }
+  
+  .element__content-basket:hover {
+    opacity: 0.6;
+  }

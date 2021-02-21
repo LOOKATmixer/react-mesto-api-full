@@ -1,0 +1,21 @@
+.element__content-like {
+    background-image: url(../../../images/like.svg);
+    width: 35px;
+    height: 19px;
+    background-repeat: no-repeat;
+    padding: 0;
+    border: none;
+    font: inherit;
+    color: inherit;
+    background-color: transparent;
+    cursor: pointer;
+    transition: opacity 0.2s linear;
+  }
+
+  .element__content-like:focus {
+    outline: none;
+  }
+  
+  .element__content-like:hover {
+    opacity: 0.6;
+  }
