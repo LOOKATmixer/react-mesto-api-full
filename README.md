@@ -3,12 +3,10 @@
 ---
 
 ### Сайт:
-### https://mixer.students.nomoreparties.monster/sign-in
-### https://mixer.students.nomoreparties.monster
+### https://mixer.students.nomoreparties.space
 
 ### REST API:
-### https://api.mixer.students.nomoreparties.monster/sign-in
-### https://api.mixer.students.nomoreparties.monster
+### https://api.mixer.students.nomoreparties.space
 
 ### Публичный IP:
 ### 84.201.173.161
