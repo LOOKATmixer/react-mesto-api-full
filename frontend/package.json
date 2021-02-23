@@ -18,7 +18,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "npm run build && scp -r ./build/* mynumbernine@84.201.173.161:/home/mynumbernine/react-mesto-api-full/news-frontend"
   },
   "author": "Viktor Komlev",
   "description": "Yandex.Praktikum project",

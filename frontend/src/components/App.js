@@ -9,7 +9,7 @@ import AddPlacePopup from './AddPlacePopup';
 import ImagePopup from './ImagePopup';
 import PopupWithDelete from './PopupWithDelete';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
-import { api } from '../utils/Api';
+import { api } from '../utils/api';
 import ProtectedRoute from './ProtectedRoute';
 import Login from './Login';
 import Register from './Register';
@@ -233,6 +233,7 @@ function App() {
 
   React.useEffect(() => {
     tokenCheck();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   React.useEffect(() => {
