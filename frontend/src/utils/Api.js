@@ -95,9 +95,8 @@ const handleOriginalResponse = (res) => {
 };
 
 export const api = new Api({
-  url: "https://mesto.nomoreparties.co/v1/cohort-17",
+  baseUrl: "https://api.mixer.students.nomoreparties.space",
   headers: {
-    authorization: "3edb3715-d2b8-46c3-8d1b-ee5c4e7c3cc4",
     "Content-Type": "application/json",
   },
 });
