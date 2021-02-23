@@ -12,7 +12,8 @@ require('dotenv').config();
 const { errors, celebrate, Joi, CelebrateError } = require('celebrate');
 const validator = require('validator');
 
-const router = require('./routes');
+const cardsRouter = require('./routes/cards');
+const usersRouter = require('./routes/users');
 const { login, createUser } = require('./controllers/users.js');
 const auth = require('./middlewares/auth.js');
 const NotFoundError = require('./errors/NotFoundError');
@@ -60,8 +61,9 @@ app.post('/signin', validateUserLogin, login);
 app.post('/signup', validateUserSignup, createUser);
 app.use(auth);
 
-app.use('/', router);
-app.use('*', (req, res) => {
+app.use('/cards', cardsRouter);
+app.use('/users', usersRouter);
+app.use('/*', (req, res) => {
   throw new NotFoundError('Запрашиваемый ресурс не найден');
 });
 

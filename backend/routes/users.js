@@ -1,4 +1,4 @@
-const router = require('express').Router();
+const usersRouter = require('express').Router();
 const { celebrate, Joi, CelebrateError } = require('celebrate');
 const validator = require('validator');
 
@@ -34,10 +34,10 @@ const validateUserAvatar = celebrate({
   }),
 });
 
-router.get('/', getUsers);
-router.get('/:id', validateUserId, getUser);
-router.post('/', createUser);
-router.patch('/me', validateUserUpdate, updateProfile);
-router.patch('/me/avatar', validateUserAvatar, updateAvatar);
+usersRouter.get('/', getUsers);
+usersRouter.get('/:id', validateUserId, getUser);
+usersRouter.post('/', createUser);
+usersRouter.patch('/me', validateUserUpdate, updateProfile);
+usersRouter.patch('/me/avatar', validateUserAvatar, updateAvatar);
 
-module.exports = router;
+module.exports = usersRouter;

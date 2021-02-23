@@ -1,7 +1,6 @@
 class Api {
   constructor(options) {
-    this._url = options.url;
-    this.headers = options.headers;
+    this._token = options.baseUrl;
     this._authorization = options.headers.authorization;
     this._contentType = options.headers["Content-type"];
   }
@@ -9,62 +8,80 @@ class Api {
   getInitialCards() {
     return fetch(`${this._url}/cards`, {
       method: "GET",
-      headers: this.headers,
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("token")}`,
+        "Content-type": `${this._contentType}`,
+      },
     }).then(handleOriginalResponse);
   }
 
   addNewCards({ name, link }) {
-    return fetch(`${this._url}/cards`, {
+    return fetch(`${this._token}/cards`, {
       method: "POST",
-      headers: this.headers,
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("token")}`,
+        "Content-Type": this._contentType,
+      },
       body: JSON.stringify({
-        name: name,
-        link: link,
+        name,
+        link,
       }),
     }).then(handleOriginalResponse);
   }
 
   deleteCard(cardId) {
-    return fetch(`${this._url}/cards/${cardId}`, {
+    return fetch(`${this._token}/cards/${cardId}`, {
       method: "DELETE",
-      headers: this.headers,
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("token")}`,
+        "Content-Type": this._contentType,
+      },
     }).then(handleOriginalResponse);
   }
 
   changeLikeCardStatus(cardId, isLiked) {
-    return fetch(`${this._url}/cards/likes/${cardId}`, {
-      method: isLiked ? "PUT": "DELETE",
+    return fetch(`${this._token}/cards/${cardId}/likes`, {
+      method: isLiked ? "PUT" : "DELETE",
       headers: {
-        authorization: this._authorization,
+        authorization: `Bearer ${localStorage.getItem("token")}`,
         "Content-Type": this._contentType,
       },
     }).then(handleOriginalResponse);
   }
 
   changeAvatar({ avatar }) {
-    return fetch(`${this._url}/users/me/avatar`, {
+    return fetch(`${this._token}/users/me/avatar`, {
       method: "PATCH",
-      headers: this.headers,
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("token")}`,
+        "Content-Type": this._contentType,
+      },
       body: JSON.stringify({
-        avatar: avatar,
+        avatar: `${avatar}`,
       }),
     }).then(handleOriginalResponse);
   }
 
   getUserInfo() {
-    return fetch(`${this._url}/users/me/`, {
+    return fetch(`${this._token}/users/me`, {
       method: "GET",
-      headers: this.headers,
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("token")}`,
+        "Content-type": `${this._contentType}`,
+      },
     }).then(handleOriginalResponse);
   }
 
   changeUserInfo({ name, about }) {
-    return fetch(`${this._url}/users/me/`, {
+    return fetch(`${this._token}/users/me`, {
       method: "PATCH",
-      headers: this.headers,
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("token")}`,
+        "Content-Type": this._contentType,
+      },
       body: JSON.stringify({
-        name: name,
-        about: about,
+        name,
+        about,
       }),
     }).then(handleOriginalResponse);
   }
