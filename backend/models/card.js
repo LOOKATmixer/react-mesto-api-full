@@ -16,7 +16,7 @@ const cardSchema = new mongoose.Schema({
         return validator.isURL(v);
       },
     },
-    message: 'Введена некорректная ссылка :(',
+    message: 'Введена некорректная ссылка',
   },
   owner: {
     type: mongoose.Schema.Types.ObjectId,
