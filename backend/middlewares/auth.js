@@ -10,11 +10,7 @@ const extractBearerToken = (header) => header.replace('Bearer ', '');
 module.exports = (req, res, next) => {
   const { authorization } = req.headers;
   if (!authorization || !authorization.startsWith('Bearer ')) {
-<<<<<<< HEAD
-    throw new UnauthError('Необходимо авторизироваться1');
-=======
     throw new UnauthError('Необходимо авторизироваться');
->>>>>>> 32649233938857a55f59db383522327fb5e88e50
   }
 
   const token = extractBearerToken(authorization);
@@ -26,11 +22,7 @@ module.exports = (req, res, next) => {
       `${NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret'}`
     );
   } catch (err) {
-<<<<<<< HEAD
-    throw new UnauthError('Необходимо авторизироваться2');
-=======
     throw new UnauthError('Необходимо авторизироваться');
->>>>>>> 32649233938857a55f59db383522327fb5e88e50
   }
 
   req.user = payload;

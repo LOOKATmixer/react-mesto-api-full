@@ -16,27 +16,15 @@ const userSchema = new mongoose.Schema({
     type: String,
     minlength: 2,
     maxlength: 30,
-<<<<<<< HEAD
-    required: false,
-=======
->>>>>>> 32649233938857a55f59db383522327fb5e88e50
     default: 'Исследователь',
   },
   avatar: {
     type: String,
-<<<<<<< HEAD
-    required: false,
-=======
->>>>>>> 32649233938857a55f59db383522327fb5e88e50
     validate: {
       validator(v) {
         return validator.isURL(v);
       },
-<<<<<<< HEAD
-      message: 'Введена некорректная ссылка :(',
-=======
       message: 'Введена некорректная ссылка',
->>>>>>> 32649233938857a55f59db383522327fb5e88e50
     },
     default:
       'https://pictures.s3.yandex.net/resources/jacques-cousteau_1604399756.png',

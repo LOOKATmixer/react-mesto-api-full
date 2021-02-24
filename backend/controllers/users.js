@@ -119,11 +119,7 @@ const login = (req, res, next) => {
       );
       res.send({ token });
     })
-<<<<<<< HEAD
-    .catch(next);
-=======
     .catch(() => next(new BadRequestError('Введены неверное имя или пароль')));
->>>>>>> 32649233938857a55f59db383522327fb5e88e50
 };
 
 module.exports = {
