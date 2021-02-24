@@ -1,0 +1,13 @@
+.element__image_button {
+    display: block;
+    padding: 0;
+    border: none;
+    font: inherit;
+    color: inherit;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.element__image_button:focus {
+    outline: none;
+}

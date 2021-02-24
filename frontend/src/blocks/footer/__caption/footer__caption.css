@@ -1,0 +1,11 @@
+.footer__caption {
+  font-size: 18px;
+  line-height: 122%;
+  color: #545454;
+}
+
+@media screen and (max-width: 370px) {
+  .footer__caption {
+    font-size: 14px;
+  }
+}
