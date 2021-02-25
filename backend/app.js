@@ -30,6 +30,7 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const { PORT = 3000 } = process.env;
 const app = express();
+app.use(cors());
 
 const validateUserLogin = celebrate({
   body: Joi.object().keys({
@@ -53,13 +54,9 @@ const validateUserSignup = celebrate({
   }),
 });
 
-app.use(cors());
-
 app.use('/api/', apiLimiter);
 
 app.use(helmet());
-app.disable('x-powered-by');
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
