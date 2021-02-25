@@ -6,6 +6,15 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 
+const rateLimit = require('express-rate-limit');
+
+const apiLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100,
+});
+
+const helmet = require('helmet');
+
 const cors = require('cors');
 require('dotenv').config();
 
@@ -43,6 +52,11 @@ const validateUserSignup = celebrate({
     }),
   }),
 });
+
+app.use('/api/', apiLimiter);
+
+app.use(helmet());
+app.disable('x-powered-by');
 
 app.use(cors());
 
