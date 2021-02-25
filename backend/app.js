@@ -53,12 +53,12 @@ const validateUserSignup = celebrate({
   }),
 });
 
+app.use(cors());
+
 app.use('/api/', apiLimiter);
 
 app.use(helmet());
 app.disable('x-powered-by');
-
-app.use(cors());
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
