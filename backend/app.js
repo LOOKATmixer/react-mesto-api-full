@@ -11,7 +11,7 @@ require('dotenv').config();
 
 const rateLimit = require('express-rate-limit');
 
-const apiLimiter = rateLimit({
+const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
   max: 100,
 });
@@ -55,7 +55,7 @@ const validateUserSignup = celebrate({
 const app = express();
 app.use(cors());
 
-app.use('/api/', apiLimiter);
+app.use(limiter);
 
 app.use(helmet());
 app.use(bodyParser.json());
