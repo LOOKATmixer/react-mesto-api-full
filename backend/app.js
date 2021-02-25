@@ -53,7 +53,9 @@ const validateUserSignup = celebrate({
 });
 
 const app = express();
+
 app.use(cors());
+app.options('*', cors());
 
 app.use('/api/', apiLimiter);
 
