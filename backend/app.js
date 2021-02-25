@@ -6,6 +6,9 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 
+const cors = require('cors');
+require('dotenv').config();
+
 const rateLimit = require('express-rate-limit');
 
 const apiLimiter = rateLimit({
@@ -14,9 +17,6 @@ const apiLimiter = rateLimit({
 });
 
 const helmet = require('helmet');
-
-const cors = require('cors');
-require('dotenv').config();
 
 const { errors, celebrate, Joi, CelebrateError } = require('celebrate');
 const validator = require('validator');
