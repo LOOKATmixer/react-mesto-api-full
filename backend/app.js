@@ -9,6 +9,13 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 require('dotenv').config();
 
+const rateLimit = require('express-rate-limit');
+
+const apiLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100,
+});
+
 const helmet = require('helmet');
 
 const { errors, celebrate, Joi, CelebrateError } = require('celebrate');
@@ -52,6 +59,8 @@ app.options('*', cors());
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use('/api/', apiLimiter);
 
 app.use(helmet());
 

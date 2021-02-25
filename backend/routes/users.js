@@ -12,7 +12,7 @@ const {
 
 const validateUserId = celebrate({
   params: Joi.object().keys({
-    _id: Joi.string().alphanum().length(24).hex(),
+    cardId: Joi.string().alphanum().length(24).hex(),
   }),
 });
 const validateUserUpdate = celebrate({
@@ -35,7 +35,7 @@ const validateUserAvatar = celebrate({
 });
 
 usersRouter.get('/', getUsers);
-usersRouter.get('/:_id', validateUserId, getUser);
+usersRouter.get('/:cardId', validateUserId, getUser);
 usersRouter.post('/', createUser);
 usersRouter.patch('/me', validateUserUpdate, updateProfile);
 usersRouter.patch('/me/avatar', validateUserAvatar, updateAvatar);
