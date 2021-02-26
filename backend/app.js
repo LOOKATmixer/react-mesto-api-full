@@ -6,8 +6,6 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 
-const helmet = require('helmet');
-
 const cors = require('cors');
 require('dotenv').config();
 
@@ -50,8 +48,6 @@ app.use(cors());
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
-app.use(helmet());
 
 app.use(requestLogger);
 
