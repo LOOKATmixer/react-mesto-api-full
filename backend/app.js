@@ -9,15 +9,6 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 require('dotenv').config();
 
-const rateLimit = require('express-rate-limit');
-
-const apiLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 100,
-});
-
-const helmet = require('helmet');
-
 const { errors, celebrate, Joi, CelebrateError } = require('celebrate');
 const validator = require('validator');
 
@@ -29,6 +20,7 @@ const NotFoundError = require('./errors/NotFoundError');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const { PORT = 3000 } = process.env;
+const app = express();
 
 const validateUserLogin = celebrate({
   body: Joi.object().keys({
@@ -52,17 +44,10 @@ const validateUserSignup = celebrate({
   }),
 });
 
-const app = express();
-
 app.use(cors());
-app.options('*', cors());
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
-app.use('/api/', apiLimiter);
-
-app.use(helmet());
 
 app.use(requestLogger);
 
