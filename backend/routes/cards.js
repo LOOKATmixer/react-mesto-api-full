@@ -12,7 +12,7 @@ const {
 
 const validateCardId = celebrate({
   params: Joi.object().keys({
-    _id: Joi.string().alphanum().length(24).hex(),
+    cardId: Joi.string().alphanum().length(24).hex(),
   }),
 });
 
@@ -32,8 +32,8 @@ const validateCard = celebrate({
 
 cardsRouter.get('/', getCards);
 cardsRouter.post('/', validateCard, createCard);
-cardsRouter.delete('/:_id', validateCardId, deleteCard);
-cardsRouter.put('/:_id/likes', validateCardId, likeCard);
-cardsRouter.delete('/:_id/likes', validateCardId, dislikeCard);
+cardsRouter.delete('/:cardId', validateCardId, deleteCard);
+cardsRouter.put('/:cardId/likes', validateCardId, likeCard);
+cardsRouter.delete('/:cardId/likes', validateCardId, dislikeCard);
 
 module.exports = cardsRouter;

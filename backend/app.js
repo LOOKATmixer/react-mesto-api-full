@@ -20,6 +20,7 @@ const NotFoundError = require('./errors/NotFoundError');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const { PORT = 3000 } = process.env;
+const app = express();
 
 const validateUserLogin = celebrate({
   body: Joi.object().keys({
@@ -43,10 +44,7 @@ const validateUserSignup = celebrate({
   }),
 });
 
-const app = express();
-
 app.use(cors());
-app.options('*', cors());
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
