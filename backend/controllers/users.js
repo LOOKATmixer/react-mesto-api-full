@@ -117,7 +117,7 @@ const login = (req, res, next) => {
       );
       res.send({ token });
     })
-    .catch(() => next(new BadRequestError('Введены неверное имя или пароль')));
+    .catch(() => next(new UnauthError('Введены неверное имя или пароль')));
 };
 
 module.exports = {
