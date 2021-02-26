@@ -246,13 +246,15 @@ function App() {
   });
 
   React.useEffect(() => {
+    if (loggedIn) {
       Promise.all([api.getInitialCards(), api.getUserInfo()])
         .then(([cards, userData]) => {
           setCurrentUser(userData);
           setCards(cards);
         })
         .catch((err) => console.log(err));
-  }, []);
+    }
+  }, [loggedIn]);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
