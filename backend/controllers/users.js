@@ -83,7 +83,11 @@ const createUser = (req, res, next) => {
 
 const updateProfile = (req, res, next) => {
   const { name, about } = req.body;
-  User.findByIdAndUpdate(req.user._id, { name, about }, { new: true, runValidators: true })
+  User.findByIdAndUpdate(
+    req.user._id,
+    { name, about },
+    { new: true, runValidators: true }
+  )
     .then((user) => {
       res.send(user);
     })
@@ -92,7 +96,11 @@ const updateProfile = (req, res, next) => {
 
 const updateAvatar = (req, res, next) => {
   const { avatar } = req.body;
-  User.findByIdAndUpdate(req.user._id, { avatar }, { new: true, runValidators: true })
+  User.findByIdAndUpdate(
+    req.user._id,
+    { avatar },
+    { new: true, runValidators: true }
+  )
     .then((user) => {
       if (!user) {
         throw new NotFoundError('Нет пользователя с таким id');
@@ -105,19 +113,25 @@ const updateAvatar = (req, res, next) => {
 
 const login = (req, res, next) => {
   const { email, password } = req.body;
-  return User.findUserByCredentials(email, password)
+  User.findOne({ email })
+    .select('+password')
     .then((user) => {
       if (!user) {
-        throw new UnauthError('Авторизация не пройдена');
+        throw new UnauthError('Неправильные почта или пароль');
       }
-      const token = jwt.sign(
-        { _id: user._id },
-        NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret',
-        { expiresIn: '7d' }
-      );
+      return bcrypt.compare(password, user.password).then((matched) => {
+        if (!matched) {
+          throw new UnauthError('Неправильные почта или пароль');
+        }
+        return user;
+      });
+    })
+    .then(({ _id }) => {
+      const secret = NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret';
+      const token = jwt.sign({ _id }, secret, { expiresIn: '7d' });
       res.send({ token });
     })
-    .catch(() => next(new BadRequestError('Введены неверное имя или пароль')));
+    .catch(next);
 };
 
 module.exports = {
