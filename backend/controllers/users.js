@@ -107,17 +107,16 @@ const login = (req, res, next) => {
   const { email, password } = req.body;
   return User.findUserByCredentials(email, password)
     .then((user) => {
-      if (!user) {
-        throw new UnauthError('Авторизация не пройдена');
+      if (user) {
+        const token = jwt.sign(
+          { _id: user._id },
+          NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret',
+          { expiresIn: '7d' },
+        );
+        res.send({ token });
       }
-      const token = jwt.sign(
-        { _id: user._id },
-        NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret',
-        { expiresIn: '7d' }
-      );
-      res.send({ token });
     })
-    .catch(() => next(new BadRequestError('Введены неверное имя или пароль')));
+    .catch(next);
 };
 
 module.exports = {
